@@ -1,0 +1,732 @@
+ 1.what is jinja file. why did you use it ansible playbook (Ansible)?
+
+Ansible uses the jinja2 templates for template files. Jinja2 is a modern and designer-friendly templating language for Python frameworks. It is widely used for dynamic file generation based on its parameter.
+"Jinja2" to specify the newest release version, is a Python template engine used to create HTML, XML or other markup formats that are returned to the user via an HTTP response.
+Ansible uses Jinja2 templating to enable dynamic expressions and access to variables and facts. You can use templating with the template module. For example, you can create a template for a configuration file, then deploy that configuration file to multiple environments and supply the correct data (IP address, hostname, version) for each environment. You can also use templating in playbooks directly, by templating task names and more. You can use all the standard filters and tests included in Jinja2
+
+
+2.suppose you have ec2 instance in aws. I want excute command on ec2 instance using IAM policy only . how to excute? (aws)
+
+Step 1: Create an Identity and Access Management (IAM) role. ...
+Step 2: Create an EC2 instance. ...
+Step 3: Update the Systems Manager Agent. ...
+Step 4: Run a remote shell script. ...
+Step 5: Terminate your resources.
+
+3.Can you brief about your deployment strategy used current project?
+It could rolling updates blue , green and canary deployment. Its deferences from project to project.
+Blue/Green Deployment. In this type of deployment strategy, the new version of the software runs alongside the old version. ...
+Canary Deployment. ...
+Recreate Deployment. ...
+Ramped Deployment. ...
+Shadow Deployment. ...
+A/B Testing Deployment.
+
+
+4.Where are Ansible scripts stored?
+All hosts are stored in a local Ansible inventory file called /etc/ansible/hosts. While admins can change where host information is stored, this location is the default setting and a best practice.
+
+5.What are Ansible playbooks used for?
+Ansible Playbooks are regularly used to automate IT infrastructure (such as operating systems and Kubernetes platforms), networks, security systems, and developer personas (such as Git.
+
+6.What are Ansible scripts?
+An Ansible playbook is an organized unit of scripts that defines work for a server configuration managed by the automation tool Ansible. Ansible is a configuration management tool that automates the configuration of multiple servers by the use of Ansible playbooks.
+automate server and cloud provisioning, configuration management, and application deployment
+
+7.how to create a ansible playbook
+Open a terminal window on your control node.
+
+Create a new playbook file named playbook.yaml in any directory and open it for editing.
+
+Add the following content to playbook.yaml:
+
+- name: My first play
+  hosts: virtualmachines
+  tasks:
+   - name: Ping my hosts
+     ansible.builtin.ping:
+   - name: Print message
+     ansible.builtin.debug:
+       msg: Hello world
+Run your playbook.
+
+ansible-playbook -i inventory.yaml playbook.yaml
+
+8.How do I copy files from one directory to another in ansible?
+Type#1 Copy directory's content with ansible in a recursive manner
+- name: Ansible Copy Directory Example Local to Remote.
+hosts: remoteserver.
+tasks:
+- name: Copying the Directory's contents (sub directories/files)
+become: true.
+copy:
+src: ~/Downloads/logos/
+dest: /var/www/html.
+or fetch command also use
+
+9.how can re use one file in ansible
+Ansible offers two ways to re-use files and roles in a playbook: dynamic and static.
+For dynamic re-use, add an include_* task in the tasks section of a play: include_role. include_tasks. include_vars.
+For static re-use, add an import_* task in the tasks section of a play: import_role. import_tasks.
+
+
+10.What is the difference between 'git pull' and 'git fetch'?.
+git fetch just "downloads" the changes from the remote to your local repository. git pull downloads the changes and merges them into your current branch
+
+
+11.What are the command to check load average on a Linux system?
+How to Check the Load Average in Linux
+Using uptime command. The uptime command is one of the most common methods for checking the Load Average for your system. ...
+Using top command. Another way to monitor the Load Average on your system is to utilise the top command in Linux
+
+12.How do I check my CPU and memory utilization on Linux?
+How To Check CPU Usage from Linux Command Line
+top Command to View Linux CPU Load. Open a terminal window and enter the following: top. ...
+mpstat Command to Display CPU Activity. ...
+sar Command to Show CPU Utilization. ...
+iostat Command for Average Usage. ...
+Nmon Monitoring Tool. ...
+Graphical Utility Option
+
+
+13.How do I know which instance of Linux is running?
+Check running process in Linux
+Open the terminal window on Linux.
+For remote Linux server use the ssh command for log in purpose.
+Type the ps aux to see all running process in Linux.
+Alternatively, you can issue the top command or htop command to view running process in Linux.
+
+14.What is security group in aws and why we use?
+
+A security group acts as a virtual firewall for your EC2 instances to control incoming and outgoing traffic. Inbound rules control the incoming traffic to your instance, and outbound rules control the outgoing traffic from your instance. When you launch an instance, you can specify one or more security groups
+
+15.Which AWS services use security groups?
+The main concept to understand about an AWS Security Group is that it determines what traffic is permitted in/out of a resource on a virtual network. Services that launch EC2 instances: AWS Elastic Beanstalk.
+...
+5 Answers
+Amazon RDS (Relational Database Service)
+Amazon Redshift.
+Amazon ElastiCache.
+Amazon CloudSearch.
+
+16.What are volumes and snapshots in AWS?
+
+Snapshots can be used to create a backup of critical workloads, such as a large database or a file system that spans across multiple EBS volumes. Multi-volume snapshots allow you to take exact point-in-time, data coordinated, and crash-consistent snapshots across multiple EBS volumes attached to an EC2 instance.
+
+17.What are the types of volumes for EC2 instances?
+EBS Volume Types Table
+Volume Type	General Purpose SSD (gp2)	Provisioned IOPS SSD (io1)
+Volume Size	1GiB—16TiB	4GiB—16TiB
+Max Throughput per Volume	250MiB/s	1000MiB/s
+Max IOPS per Volume	16000	64000
+Cost	$0.1 per GB	$0.125 per GB + $0.065 per IOPS
+
+18.What is volume size in AWS?
+Amazon EBS volume types
+Hard Disk Drives (HDD)	
+Volume Size	125 GB - 16 TB	125 GB - 16 TB
+Max IOPS**/Volume	500	250
+Max Throughput***/Volume	500 MB/s	250 MB/s
+Max IOPS/Instance	260,000	260,000
+
+19.S3 bucket is global service or region service?
+Amazon S3 supports global buckets, which means that each bucket name must be unique across all AWS accounts in all the AWS Regions within a partition. A partition is a grouping of Regions.
+
+20.What type of service is S3?
+Image result for s3 bucket is global services or regional services
+Amazon Simple Storage Service (Amazon S3) is an object storage service offering industry-leading scalability, data availability, security, and performance.
+
+21.How many types of storage classes are available in S3?
+S3 Storage Classes can be configured at the object level, and a single bucket can contain objects stored across S3 Standard, S3 Intelligent-Tiering, S3 Standard-IA, and S3 One Zone-IA.
+
+22.What is Route 53 and how does it work?
+Route 53 sends automated requests over the internet to a resource, such as a web server, to verify that it's reachable, available, and functional. You also can choose to receive notifications when a resource becomes unavailable and choose to route internet traffic away from unhealthy resources.
+ 
+23.what are the types of loader balancer in aws?
+Elastic Load Balancing supports the following types of load balancers: Application Load Balancers, Network Load Balancers, and Classic Load Balancers.
+
+24.What are difference between alb and nlb and clb in aws?
+ALB will be the product for http/https (L7) load balancing. It works sort of like Nginx or HAProxy. NLB is focus on tcp (L4) load balancing, technically it should be something like LVS. One good use case of ALB is to consolidate CLB, here is a real example that I have done.
+
+25.What is Alb used for?
+Elastic Load Balancing automatically distributes your incoming traffic across multiple targets, such as EC2 instances, containers, and IP addresses, in one or more Availability Zones. It monitors the health of its registered targets, and routes traffic only to the healthy targets.
+
+26.What is load balancer in aws and what is the purpose load balancer?
+A load balancer serves as the single point of contact for clients. The load balancer distributes incoming application traffic across multiple targets, such as EC2 instances, in multiple Availability Zones. This increases the availability of your application. You add one or more listeners to your load balancer.
+
+27.where we can use nlb in aws?
+Network Load Balancer (NLB) operates at layer 4 load balancing both TCP and UDP traffic. It supports AWS PrivateLink and provides a static IP per Availability Zone that can be used by applications as the load balancer front-end IP.
+
+28.Why we use nlb in aws?
+Network Load Balancer uses the same API as Application Load Balancer. This will enable you to work with target groups, health checks, and load balance across multiple ports on the same Amazon EC2 instance to support containerized applications.
+
+
+29.What is the purpose of Auto Scaling?
+Autoscaling provides users with an automated approach to increase or decrease the compute, memory or networking resources they have allocated, as traffic spikes and use patterns demand.
+AWS Auto Scaling monitors your applications and automatically adjusts capacity to maintain steady, predictable performance at the lowest possible cost. Using AWS Auto Scaling, it's easy to setup application scaling for multiple resources across multiple services in minutes.
+
+30.How do I initialize Git?
+Start a new git repository
+Create a directory to contain the project.
+Go into the new directory.
+Type git init .
+Write some code.
+Type git add to add the files (see the typical use page).
+Type git commit .
+
+31.how to create branch in git?
+The git branch command can be used to create a new branch. When you want to start a new feature, you create a new branch off main using git branch new_branch . Once created you can then use git checkout new_branch to switch to that branch.
+
+32.What happens when you merge two branches git?
+Merging Branches. Once you've completed work on your branch, it is time to merge it into the main branch. Merging takes your branch changes and implements them into the main branch. Depending on the commit history, Git performs merges two ways: fast-forward and three-way merge.
+
+33.How do I resolve merge conflicts in Github command line?
+Removed file merge conflicts
+Open .
+Navigate into the local Git repository that has the merge conflict. ...
+Generate a list of the files affected by the merge conflict. ...
+Open your favorite text editor, such as Atom, and navigate to the file that has merge conflicts.
+Decide if you want keep the removed file.
+Git Commands to Resolve Conflicts
+git log --merge. The git log --merge command helps to produce the list of commits that are causing the conflict.
+git diff. The git diff command helps to identify the differences between the states repositories or files.
+git checkout. ...
+git reset --mixed. ...
+git merge --abort. ...
+git reset.
+
+34.Why we use git stash?
+git stash temporarily shelves (or stashes) changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on
+
+35.How do I use git stash?
+Here's the sequence to follow when using git stash:
+Save changes to branch A.
+Run git stash .
+Check out branch B.
+Fix the bug in branch B.
+Commit and (optionally) push to remote.
+Check out branch A.
+Run git stash pop to get your stashed changes back.
+
+36.What architecture does Jenkins use?
+Image result for what type of jenkins architecture
+master/slave architecture
+Jenkins uses master/slave architecture to manage distributed builds. Jenkins Architecture is based on the distributed. This has 2 components. Jenkins server is a web dashboard which is nothing but powered from a war file, default run on 8080 ports
+
+37.What type of software is Jenkins?
+Jenkins is an open source continuous integration/continuous delivery and deployment (CI/CD) automation software DevOps tool written in the Java programming language. It is used to implement CI/CD workflows, called pipelines.
+
+
+38.What are the different types of projects in Jenkins?
+Freestyle project.
+Maven project.
+Pipeline.
+Multibranch pipeline.
+External Job.
+Multi-configuration project.
+Github organization.
+
+39.Jenkins Master and Slave Architecture?
+The Jenkins master acts to schedule the jobs, assign slaves, and send builds to slaves to execute the jobs. It will also monitor the slave state (offline or online) and get back the build result responses from slaves and the display build results on the console output.
+
+40.How do I connect master-slave in Jenkins?
+Jenkins Master Slave Configuration
+Then click on the option Manage Nodes.
+Click on the option New Node in the left menu.
+Provide a name for your slave node. ...
+After Clicking OK, following configuration page will appear for machine Slave1. ...
+After selecting Launch Method as Launch agent via Java Web Start, save changes.
+
+41.What is prerequisite to learn Jenkins?
+Requirements. Basic knowledge about software development processes. A computer running Windows, OSX or Linux. Knowledge of Git, Maven, Linux will be preferred but NOT required. Prior experience with Jenkins is NOT required.
+256 MB of RAM.
+1 GB of drive space (although 10 GB is a recommended minimum if running Jenkins as a Docker container)
+
+
+42.What are maven life cycle goals?
+
+Phase	Handles	Description
+package	packaging	This phase creates the JAR/WAR package as mentioned in the packaging in POM.xml.
+install	installation	This phase installs the package in local/remote maven repository.
+Deploy	Deploying	Copies the final package to the remote repository.
+
+43.What is Maven default lifecycle?
+There are three built-in build lifecycles: default, clean and site. The default lifecycle handles your project deployment, the clean lifecycle handles project cleaning, while the site lifecycle handles the creation of your project's web site.
+
+44.What is POM XML used for?
+POM is an XML file that contains the project configuration details used by Maven. It provides all the configurations required for a project. POM means Project Object Model, and, as the name suggests, it defines the model of the project as well.
+
+45.How do I run POM xml?
+For this right-click the pom. xml file and select Run As Maven build. This opens a dialog which allows to define the parameters for the start. Enter clean verify in the Goals: field and press the Run button.
+
+46.Can we have 2 POM xml?
+Yes you can use Maven Profiles to manage this. Obviously you can tweak this approach to suit your needs however works best. So you could create a profile that builds just the engine projects.
+
+47.Where do I put POM xml?
+The pom. xml is placed in the projects root-folder.
+
+48.What are Maven commands?
+Image result
+Maven Commands
+mvn clean. This command cleans the maven project by deleting the target directory. ...
+mvn compiler:compile. This command compiles the java source classes of the maven project. ...
+mvn compiler:testCompile. ...
+mvn package. ...
+mvn install. ...
+mvn deploy. ...
+mvn validate. ...
+mvn dependency:tree.
+
+
+49.How do I get exit status in shell?
+You can simply do a echo $? after executing the command/bash which will output the exit code of the program. Every command returns an exit status (sometimes referred to as a return status or exit code)
+
+
+50.How do I find exit status code?
+Checking Bash Exit Code
+
+Launch a terminal, and run any command. Check the value of the shell variable “$?” for the exit code. $ echo $? As the “date” command ran successfully, the exit code is 0.
+
+51.What are positional parametars?
+A positional parameter is a parameter denoted by one or more digits, other than the single digit 0 . Positional parameters are assigned from the shell's arguments when it is invoked, and may be reassigned using the set builtin command.
+
+
+52.What is a branching strategy?
+What is a branching strategy? Simply put, a branching strategy is something a software development team uses when interacting with a version control system for writing and managing code. As the name suggests, the branching strategy focuses on how branches are used in the development process.
+
+53.What are branching strategies in Git?
+Image result for branching strategy in git
+A branching strategy, therefore, is the strategy that software development teams adopt when writing, merging and deploying code when using a version control system.
+
+54.What is Git rebase vs merge?
+Git Merge Vs Git Rebase:
+
+Git merge is a command that allows you to merge branches from Git. Git rebase is a command that allows developers to integrate changes from one branch to another. In Git Merge logs will be showing the complete history of the merging of commits.
+
+55.What is the difference between feature branch and release branch?
+Feature branches are the ones developers create to work on new features. They should always branch off "development." After the feature is complete, the developer should merge the feature back to controller. The next type of supporting branch is the release branch.
+
+56.What is the difference between release and master branch?
+The master branch must reflect actual production worthy releases. You merge your release branch into master and you then release (i.e. creating artifacts) for production environment from the master branch. Artifacts meant for production environment always originate from master branch in GitFlow.
+
+57.How do you make a release branch?
+Use the “git flow release start” command to create the release branch. When the release is stable, run the “git flow release finish” command. $ git flow release finish '0.1.
+58.Why do we need release branch?
+The release branch helps isolate the development of an upcoming version and the current release. The release branch's lifetime ends when a particular version of a project is released. Once this branch merges into the develop and main branches, it can be deleted.
+
+59.How do I merge two branches?
+To merge branches locally, use git checkout to switch to the branch you want to merge into. This branch is typically the main branch. Next, use git merge and specify the name of the other branch to bring into this branch. This example merges the jeff/feature1 branch into the main branch.
+
+60.What is git rebase?
+What is git rebase? Rebasing is the process of moving or combining a sequence of commits to a new base commit. Rebasing is most useful and easily visualized in the context of a feature branching workflow.
+
+61.Can we have multiple release branches?
+Once the code is tested, it can be merged into the main branch. Depending on your branching strategy, you can have multiple types of supporting branches like feature branches, hotfixes, and release branches
+
+62.Why not commit directly master branch in git?
+
+Yes it is a bad practice, Ideally there should not be any direct commit in master branch. Master branch should contain thoroughly tested and deploy-able version of code which means merge develop branch with master branch whenever you are ready to release your changes.
+
+
+63.How do I deploy an application to Auto Scaling AWS?
+Getting Started with the AWS Management Console
+Step 1: Sign into the AWS Management Console. Create an account and sign into the console. ...
+Step 2: Create a launch template. ...
+Step 3: Create an Auto Scaling group. ...
+Step 4: Add Elastic Load Balancers (Optional) ...
+Step 5: Configure Scaling Policies (Optional)
+
+65.How is Auto Scaling enabled in AWS?
+Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/ . (Optional) On the navigation pane, under Auto Scaling, choose Auto Scaling Groups. Select the Auto Scaling group and verify that the maximum size of the Auto Scaling group is large enough that you can add another instance.
+
+66.How do you deploy an application in Auto Scaling group?
+
+Prerequisites.
+Step 1: Create and configure the Auto Scaling group.
+Step 2: Deploy the application to the Auto Scaling group.
+Step 3: Check your results.
+Step 4: Increase the number of Amazon EC2 instances in the Auto Scaling group.
+Step 5: Check your results again.
+Step 6: Clean up.
+
+67.What is microservices and example?
+Microservices are an architectural style that develops a single application as a set of small services. Each service runs in its own process. The services communicate with clients, and often each other, using lightweight protocols, often over messaging or HTTP.
+
+68.Is UI part of microservices?
+Image result for how many microservices in ui
+Microservices architecture often starts with the server-side handling data and logic, but, in many cases, the UI is still handled as a monolith. However, a more advanced approach, called micro frontends, is to design your application UI based on microservices as well.
+
+69.Is microservices a backend?
+A microservice is not a layer within a monolithic application (example, the web controller, or the backend-for-frontend)
+
+70.Can 2 microservices have same database?
+In the shared-database-per-service pattern, the same database is shared by several microservices. You need to carefully assess the application architecture before adopting this pattern, and make sure that you avoid hot tables (single tables that are shared among multiple microservices).
+
+71.what is the difference between containerization and virtualization?
+Virtualization enables you to run multiple operating systems on the hardware of a single physical server, while containerization enables you to deploy multiple applications using the same operating system on a single virtual machine or server.
+
+72.What is dockerfile and why we use?
+A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession. This page describes the commands you can use in a Dockerfile.
+
+73.Where are WAR files stored?
+The location for WAR files is the webapps directory within your Tomcat installation directory.
+
+74.Where is WAR file located Tomcat?
+Windows platforms
+Web server/Servlet Engine	Default location of expanded WAR file
+IIS with Tomcat	<Tomcat Installation Directory>\ webapps\<deploy_name>
+IIS with ServletExec	<ServletExec Installation Directory>\ServletExec Data\ default\<deploy_name>\WAR
+
+75.Where are Tomcat files stored?
+By default, these files are located at TOMCAT-HOME/conf/server. xml and TOMCAT-HOME/conf/web. xml, respectively.
+
+76.What is sonarqube where used it?
+SonarQube is an open-source platform developed by SonarSource for continuous inspection of code quality. Sonar does static code analysis, which provides a detailed report of bugs, code smells, vulnerabilities, code duplications.
+
+77.What are pods and nodes in Kubernetes?
+Pods are simply the smallest unit of execution in Kubernetes, consisting of one or more containers, each with one or more application and its binaries. Nodes are the physical servers or VMs that comprise a Kubernetes Cluster.
+Pods are the smallest, most basic deployable objects in Kubernetes. A Pod represents a single instance of a running process in your cluster. Pods contain one or more containers, such as Docker containers. When a Pod runs multiple containers, the containers are managed as a single entity and share the Pod's resources.
+
+78.How do you check which pod is running on which node Kubernetes?
+To find the cluster IP address of a Kubernetes pod, use the kubectl get pod command on your local machine, with the option -o wide . This option will list more information, including the node the pod resides on, and the pod's cluster IP. The IP column will contain the internal cluster IP address for each pod.
+ or Kubectl get pods -n <name space name>
+
+79.Which applications build beginning to end?
+It could be java,scala,.net,php projects
+
+80.What are all the types of monitoring supported in the Nagios XI tool?
+Image result for what are the metrics nagios
+Nagios XI provides monitoring of all mission-critical infrastructure components on any operating system. High-efficiency worker processes allow for nearly limitless scalability, monitoring effectiveness, proactive alerting, availability reporting, and comprehensive monitoring.
+Nagios is capable of monitoring and graphing the following website performance metrics: Page load time. Page size. Page response time.
+
+81. What is Jenkins ?
+
+Jenkins is an open source continuous integration/continuous delivery and deployment (CI/CD) automation software DevOps tool written in the Java programming language. It is used to implement CI/CD workflows, called pipelines.
+
+82. What is plugins ?
+
+Plugins are the primary means of enhancing the functionality of a Jenkins environment to suit organization- or user-specific needs. There are over a thousand different plugins which can be installed on a Jenkins controller and to integrate various build tools, cloud providers, analysis tools, and much more.
+
+83. What are the plugins used in Jenkins?
+Top 10 Jenkins Plugins and Features
+Easy Installation Feature.
+Docker Plugin for Jenkins.
+Jira Plugin.
+Slack Notification Plugin.
+Maven Plugin.
+Amazon EC2 Plugin.
+JUnit Plugin.
+Pipeline Plugin.
+
+84. What is Pipeline ?
+Jenkins Pipeline (or simply "Pipeline") is a suite of plugins which supports implementing and integrating continuous delivery pipelines into Jenkins. A continuous delivery pipeline is an automated expression of your process for getting software from version control right through to your users and customers.
+
+85. Why do we use pipelines in Jenkins?
+Jenkins pipeline is implemented as a code which allows several users to edit and execute the pipeline process. Pipelines are robust. So if your server undergoes an unpredicted restart, the pipeline will be automatically resumed.
+
+86. How many Pipeline are there in Jenkins?
+1 Answer. There are two types of pipelines in Jenkins: Declarative. Scripted
+
+87. How to store creditials in jenkins ?
+
+From the Jenkins home page (i.e. the Dashboard of the Jenkins classic UI), click Manage Jenkins > Manage Credentials. Under Stores scoped to Jenkins on the right, click on Jenkins. Under System, click the Global credentials (unrestricted) link to access this default domain. Click Add Credentials on the left.
+
+88. Where credentials are stored in Jenkins?
+$JENKINS_HOME/secrets/
+Jenkins uses AES to encrypt and protect secrets, credentials, and their respective encryption keys. These encryption keys are stored in $JENKINS_HOME/secrets/ along with the master key used to protect said keys.
+
+89. How are credentials stored in Jenkins pipeline?
+Using credentials and secrets in pipelines
+From a Pipeline job configuration page, select Pipeline Pipeline Syntax.
+Select the withCrendentials: Bind credentials to variables Sample Step.
+Enter a Username Variable and Password Variable.
+Select the global credentials you created.
+Select Generate Pipeline Script.
+
+90. What is shared library in jenkins ?
+
+A shared library in Jenkins is a collection of Groovy scripts shared between different Jenkins jobs. To run the scripts, they are pulled into a Jenkinsfile. Each shared library requires users to define a name and a method of retrieving source code.
+
+91. Where is Jenkins shared library?
+To add your shared library (I'm using my demo repository on GitHub as an example): In Jenkins, go to Manage Jenkins → Configure System. Under Global Pipeline Libraries, add a library with the following settings: Name: pipeline-library-demo
+
+92. How do I call a function in one Jenkins shared library from another?
+Jenkins Shared Libraries are usually pushed into a separate Git repository & checked out by Jenkins job during the job run.
+Steps to create Jenkins shared library:
+Step 1: Create vars folder.
+Step 2: Create Groovy file.
+Step 3: Create call() function inside Groovy file.
+Steps to configure Jenkins pipeline library:
+
+93. Jenkins Master and Slave Architecture
+The Jenkins master acts to schedule the jobs, assign slaves, and send builds to slaves to execute the jobs. It will also monitor the slave state (offline or online) and get back the build result responses from slaves and the display build results on the console output
+
+94. What are nodes in jenkins ? 
+Node. A machine which is part of the Jenkins environment and capable of executing Pipelines or jobs. Both the Controller and Agents are considered to be Nodes.
+
+95. Why we use nodes in Jenkins?
+The standard Jenkins installation includes Jenkins master, and in this setup, the master will be managing all our build system's tasks. If we're working on a number of projects, we can run numerous jobs on each one. Some projects require the use of specific nodes, which necessitates the use of slave nodes.
+
+96. What is Agent in jenkins ?
+
+Agent. An agent is typically a machine, or container, which connects to a Jenkins controller and executes tasks when directed by the controller. Artifact. An immutable file generated during a Build or Pipeline run which is archived onto the Jenkins Controller for later retrieval by users.
+
+97. What is the protocol used to connect agent in jenkins ?
+
+TCP Agent Listener Port
+Jenkins can expose a TCP port that allows inbound agents to connect to it. It can be enabled, disabled, and configured in Manage Jenkins » Configure Global Security.
+
+98. What are the main components of Kubernetes architecture?
+Image result for kubernetes architecture
+Control Plane Components
+kube-apiserver. The API server is a component of the Kubernetes control plane that exposes the Kubernetes API. ...
+etcd. ...
+kube-scheduler. ...
+kube-controller-manager. ...
+cloud-controller-manager. ...
+kubelet. ...
+kube-proxy. ...
+Container runtime.
+Kubernetes is an architecture that offers a loosely coupled mechanism for service discovery across a cluster. A Kubernetes cluster has one or more control planes, and one or more compute nodes.
+
+99. Why kubernetes so populor ?
+
+Among the reasons why Kubernetes has been so widely adopted are flexibility and lack of fragmentation. Kubernetes may not be perfect, but there's no denying that a lot of people love it. Indeed, Kubernetes provides orchestration for more than three-quarters of containerized applications today.
+
+100. What is ConfigMap in Kubernetes?
+A ConfigMap is an API object that lets you store configuration for other objects to use. Unlike most Kubernetes objects that have a spec , a ConfigMap has data and binaryData fields. These fields accept key-value pairs as their values. Both the data field and the binaryData are optional.
+
+101. When would you use a ConfigMap?
+Use a ConfigMap to keep your application code separate from your configuration. It is an important part of creating a Twelve-Factor Application. This lets you change easily configuration depending on the environment (development, production, testing) and to dynamically change configuration at runtime.
+
+102. How does expose application deplyoment in kubernetes ?
+
+From the Service type drop-down list, select Node port. Click Expose. When your Service is ready, the Service details page opens, and you can see details about your Service. Under Ports, make a note of the Node Port that Kubernetes assigned to your Service.
+
+103. How to Create a Docker Image From a Container
+Step 1: Create a Base Container. ...
+Step 2: Inspect Images. ...
+Step 3: Inspect Containers. ...
+Step 4: Start the Container. ...
+Step 5: Modify the Running Container. ...
+Step 6: Create an Image From a Container. ...
+Step 7: Tag the Image. ...
+Step 8: Create Images With Tags.
+
+104. Which command is used to create a docker image?
+The docker build command builds Docker images from a Dockerfile and a “context”. A build's context is the set of files located in the specified PATH or URL . The build process can refer to any of the files in the context.
+
+105. How do I create a docker container from an image?
+The docker container create (or shorthand: docker create ) command creates a new container from the specified image, without starting it. When creating a container, the docker daemon creates a writeable container layer over the specified image and prepares it for running the specified command.
+
+106. What are the contents of Docker file?
+A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession. This page describes the commands you can use in a Dockerfile .
+
+107. What are basic components of Docker system?
+Image result for what is content of docker file system
+Components of Docker
+Docker client and server.
+Docker image.
+Docker registry.
+Docker container.
+
+108. What are the three main types of Docker components?
+Docker follows Client-Server architecture, which includes the three main components that are Docker Client, Docker Host, and Docker Registry.
+
+109. How do I create a VPC instance in AWS?
+Open the Amazon VPC console at https://console.aws.amazon.com/vpc/ . On the VPC Dashboard, choose Launch VPC Wizard. Under Step 1: Select a VPC Configuration, on VPC with a Single Public Subnet, choose Select. Enter the following information into the wizard and choose Create VPC.
+
+110. How many VPC can be created per region?
+VPC and subnets
+Name	Default	Adjustable
+VPCs per Region	5	Yes
+Subnets per VPC	200	Yes
+IPv4 CIDR blocks per VPC	5	Yes (up to 50)
+IPv6 CIDR blocks per VPC	5	No
+
+111. What is subnet in EC2?
+A subnet is a range of IP addresses in your VPC. You can attach AWS resources, such as EC2 instances and RDS DB instances, to subnets. You can create subnets to group instances together according to your security and operational needs.
+
+112. Can we create 3 subnets?
+You can create 3 types of subnets in VPC: Public Subnet: If a subnets traffic is routed to an internet gateway, the subnet is known as public subnet. Private Subnet: If a subnet doesn't have a route to an internet gateway, the subnet is known as a private subnet.
+
+113. How many gateways are in VPC?
+one Internet Gateway
+Each VPC can have only one Internet Gateway. Each Internet Gateway can be attached to only one VPC.
+
+114. What is NAT gateway in AWS?
+NAT Gateway is a highly available AWS managed service that makes it easy to connect to the Internet from instances within a private subnet in an Amazon Virtual Private Cloud (Amazon VPC). Previously, you needed to launch a NAT instance to enable NAT for instances in a private subnet
+
+115. What is a router in AWS?
+Image result
+Each AWS VPC has a VPC router. The primary function of this VPC router is to take all of the route tables defined within that VPC, and then direct the traffic flow within that VPC, as well as to subnets outside of the VPC, based on the rules defined within those tables.
+
+116.What is IP subnet?
+Image result
+A subnet, or subnetwork, is a segmented piece of a larger network. More specifically, subnets are a logical partition of an IP network into multiple, smaller network segments. The Internet Protocol (IP) is the method for sending data from one computer to another over the internet.
+
+117. Does VPC need gateway?
+You can now launch NAT Gateways in your Amazon Virtual Private Cloud (VPC) without associating an internet gateway to your VPC. Internet Gateway is required to provide internet access to the NAT Gateway.
+
+118.What is endpoint in AWS?
+An endpoint is the URL of the entry point for an AWS web service. The AWS SDKs and the AWS Command Line Interface (AWS CLI) automatically use the default endpoint for each service in an AWS Region. But you can specify an alternate endpoint for your API requests.
+
+119.What is private subnet?
+Instances in the private subnet are back-end servers that don't need to accept incoming traffic from the internet and therefore do not have public IP addresses; however, they can send requests to the internet using the NAT gateway (see the next bullet).
+
+120. What is the max and min range of VPC?
+A VPC can have a minimum of 16 addresses, using the CIDR netmask /28 , and a maximum of 65,536 addresses, using the netmask /16.
+
+121. How do I connect my VPC to the Internet?
+Follow these steps to attach an Internet gateway to your VPC to enable communication of the public subnets with the Internet: Navigate to the AWS console -> Services. Under the Networking & Content Delivery section, choose VPC. Navigate to Virtual Private Cloud -> Internet Gateways.
+
+122. What is AWS route table?
+Image result
+A route table contains a set of rules, called routes, that determine where network traffic from your subnet or gateway is directed.
+
+123. How do I find my AWS gateway?
+In the navigation pane, choose Instances, and then select the EC2 instance that your gateway is deployed on. Choose the Description tab at the bottom, and then note the Elastic IP value. You use this elastic IP address to connect to the gateway. Return to the Storage Gateway console and type in the elastic IP address.
+
+124. How to create public and private subnets in aws ?
+
+Creating VPC with Public and Private subnets
+Create VPC. Login to AWS management console and navigate to the VPC console. ...
+Create Public Subnet. Make sure to select “MyVPC” under “VPC” drop down menu and enter 10.0. ...
+Create Private Subnet. ...
+Create and Attach “Internet Gateway” ...
+Add a route to Public Subnet.
+
+125. What is the difference between Docker file and Docker compose file?
+Difference between docker-compose and Dockerfile. The key difference between the Dockerfile and docker-compose is that the Dockerfile describes how to build Docker images, while docker-compose is used to run Docker containers.
+
+126. How to create a tag in git ?
+
+In order to create a new tag, you have to use the “git tag” command and specify the tag name that you want to create. As an example, let's say that you want to create a new tag on the latest commit of your master branch. To achieve that, execute the “git tag” command and specify the tagname.
+
+127. How do I add a local remote repository?
+Follow These Steps To Add a New Remote To Your Git Repo
+Step 1: Initializing Git in Your Project. We will need a local Git repo to which we will be adding the new remote. ...
+Step 2: Creating a Remote Repo. In the previous step, we created a new local Git repo. ...
+Step 3: Adding Remote URL To a Local Repo.
+
+128. Where does Groovy script run in Jenkins?
+Image result for what is flow of groovy script in jenkins
+Usage. To create Groovy-based project, add new free-style project and select "Execute Groovy script" in the Build section, select previously configured Groovy installation and then type your command, or specify your script file name.
+
+130. Difference b/w run and cmd and Entrypoint in docker?
+
+CMD sets the command and its parameters to be executed by default after the container is started. However CMD can be replaced by docker run command line parameters. ENTRYPOINT configures the command to run when the container starts, similar to CMD from a functionality perspective.
+
+131. Linux administration commands ?
+
+Some important commands for system administrators
+Command	Function
+ifconfig	Display configuration
+traceroute>	Trace existing network
+sudo	Run a command as a root user
+route	List routing table for your server
+man	Display information about all commands
+uptime	Show how long system is running
+users	Show username who are currently logged in
+service	Call and execute script
+pkill	Kill a process
+pmap	Memory map of a process
+wget	Download file from network
+ftp or sftp	Connect remote ftp host
+free	Show memory status
+top	Display processor activity of system
+last	Display user's activity in the system
+ps	Display about processes running on the system
+Shutdown commands	Shutdown and reboot system
+info	Display information about given command
+env	Display environment variable for currently logged-in user
+netstat	Display network status
+arp	Check ethernet connectivity and IP address
+df	Display filesystem information
+du	Display usage
+init	Allow to change server bootup
+nano	A command line editor
+nslookup	Check domain name and IP information
+shred	Delete a file by over writing its content
+cat	Display, copy or combine text files
+pwd>	Print path of current working directory
+locate	Finding files by name on system
+chown	Change ownership of a file
+>alias	To short a command
+echo	Display text
+cmp	Compare two files byte by byte
+mount	Mount a filesystem
+ifconfig	Display configuration
+traceroute>	Trace existing network
+sudo	Run a command as a root user
+route	List routing table for your server
+ping	Check connection by sending packet test packet
+find	Find location of files/directories
+users	Show current logged in user
+who	Same as w but doesn't show current process
+ls	List all the files
+tar	Compress directories
+grep	Search for a string in a file
+su	Switch from one to another user
+awk	Search lines for a given pattern
+
+132. How do you mount in Linux?
+To manually mount a USB device, perform the following steps:
+Create the mount point: sudo mkdir -p /media/usb.
+Assuming that the USB drive uses the /dev/sdd1 device you can mount it to /media/usb directory by typing: sudo mount /dev/sdd1 /media/usb.
+
+133. What is the purpose of netstart command in linux ?
+
+The network statistics ( netstat ) command is a networking tool used for troubleshooting and configuration, that can also serve as a monitoring tool for connections over the network. Both incoming and outgoing connections, routing tables, port listening, and usage statistics are common uses for this command.
+
+134.Why is netstat command used?
+The netstat command is used to show network status. Traditionally, it is used more for problem determination than for performance measurement. However, the netstat command can be used to determine the amount of traffic on the network to ascertain whether performance problems are due to network congestion.
+
+135.How do I troubleshoot ImagePullBackOff?
+Here are some of the possible causes behind your pod getting stuck in the ImagePullBackOff state:
+Image doesn't exist.
+Image tag or name is incorrect.
+Image is private, and there is an authentication failure.
+Network issue.
+Registry name is incorrect.
+Container registry rate limits.
+
+136. What is image pull BackOff in Kubernetes?
+The status ImagePullBackOff means that a container could not start because Kubernetes could not pull a container image (for reasons such as invalid image name, or pulling from a private registry without imagePullSecret ).
+
+137. How do you check pod logs in Kubernetes?
+To get Kubectl pod logs, you can access them by adding the -p flag. Kubectl will then get all of the logs stored for the pod. This includes lines that were emitted by containers that were terminated.
+
+138. How do I pull an image from Dockerhub to Kubernetes?
+Steps to Deploy Docker Image to Kubernetes.
+Creating a Dockerfile.
+Building an Image from Dockerfile.
+Validate if the Image is created and Listed.
+Optionally upload to docker Hub to share with the world.
+Start the Container from Image.
+Create Manifest file for kubernetes.
+Build and Create a POD from Manifest file.
+
+139. How do you troubleshoot CrashLoopBackOff?
+5 Tips for Preventing the CrashLoopBackOff Error
+Configure and Recheck Your Files. A misconfigured or missing configuration file can cause the CrashLoopBackOff error, preventing the container from starting correctly. ...
+Be Vigilant With Third-Party Services. ...
+Check Your Environment Variables. ...
+Check Kube-DNS. ...
+Check File Locks.
+
+140.How do you troubleshoot issues in Kubernetes?
+Debugging common cluster issues.
+1: Resource metrics pipeline.
+2: Tools for Monitoring Resources.
+3: Monitor Node Health.
+4: Debugging Kubernetes nodes with crictl.
+5: Auditing.
+6: Developing and debugging services locally using telepresence.
+7: Windows debugging tips.
+
+141. How do I fix the back of the restarting failed container?
+If you receive the "Back-Off restarting failed container" output message, then your container probably exited soon after Kubernetes started the container. If the Liveness probe isn't returning a successful status, then verify that the Liveness probe is configured correctly for the application.
+
+
+

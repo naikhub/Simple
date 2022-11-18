@@ -1,0 +1,19 @@
+1.Write the command to "create a softlink in linux to any file of their choice".
+
+ln [-sf] [source] [destination]
+
+By default, the ln command creates a hard link.Use the -s option to create a soft (symbolic) link.The -f option will force the command to overwrite a file that already exists.
+Source is the file or directory being linked to.
+
+For example, create a symbolic link with:
+
+ln -s test_file.txt link_file.txt
+
+ln -s /mnt/external_drive/stock_photos ~/stock_photos
+
+2.Write the command required to search for a file in a linux directory if we know the name of the file
+
+You can use the find command to search for a file or directory on your file system. By using the -exec flag ( find -exec ), matches, which can be files, directories, symbolic links, system devices, etc., can be found and immediately processed within the same command
+
+           or
+ To find a file by name with the find command, you would use the following syntax: find -name " query "   
